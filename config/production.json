@@ -7,7 +7,7 @@
       "cert": "/path/to/crt"
     },
     "swagger": {
-      "host": "100.200.100.140"
+      "host": "100.200.100.141"
     },
     "logger": {
       "path": "",
