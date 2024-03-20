@@ -3,4 +3,4 @@ node_modules/
 logs/
 test.js
 swagger/swagger-output.json
-config/
+config/production.json
