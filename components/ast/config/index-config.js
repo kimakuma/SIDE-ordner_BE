@@ -1,6 +1,6 @@
 export const indexConfig = () => ({
   keyword: {
-    index: "assist_kms_data",
+    index: "v1-kms_feedback-004",
     field: {
       // 전체
       search: [
@@ -10,7 +10,7 @@ export const indexConfig = () => ({
         "file_content_ksk.*",  // 파일
         "cntnt_keyword_k",      // 키워드
       ],
-      highlight: ['reporter', 'title', 'content'], // 아직 필드 안정함
+      highlight: ['cntnt_text_ksk'],
       result: [
         "cntnt_no_k",
         "cntnt_title_ksk",
@@ -21,7 +21,9 @@ export const indexConfig = () => ({
         "cntnt_count_i",
         "cntnt_good_i",
         "cntnt_keyword_k",
-        "ctgr_nm_k"
+        "ctgr_nm_k",
+        "POSITIVE_kwd", 
+        "NEGATIVE_kwd"
       ],
     },
     body: {
@@ -31,8 +33,31 @@ export const indexConfig = () => ({
         bool: {
           must: [],
           filter: [],
-          should: [],
-          must_not: []
+          should: [
+            {
+              nested: {
+                path: "POSITIVE_kwd",
+                query: {
+                  bool: {
+                    should: []
+                  }
+                },
+                score_mode: "sum"
+              }
+            }
+          ],
+          must_not: [
+            {
+              nested: {
+                path: "NEGATIVE_kwd",
+                query: {
+                  bool: {
+                    should: []
+                  }
+                }
+              }
+            }
+          ]
         },
       },
       highlight: {
