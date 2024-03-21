@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { indexConfig, filterConfig } from "./config/index-config.js"
 import { Logger } from '../../lib/logger/logger.js';
-import { search as esSearch, update } from '../../lib/elasticsearch/client.js';
+import { search as esSearch } from '../../lib/elasticsearch/client.js';
 
 const logger = Logger(import.meta.url);
 
@@ -26,6 +26,52 @@ export async function keyword(params) {
       }
     })
   })
+
+  // should - 검색어 좋아요 건 수 score 적용
+  keywords.map((data) => {
+    body.query.bool.should[0].nested.query.bool.should.push({
+      bool: {
+        must: [
+          {
+            match: {
+              "POSITIVE_kwd.keyword": data
+            }
+          },
+          {
+            function_score: {
+              script_score: {
+                script: {
+                  source: "Math.log(2 + doc['POSITIVE_kwd.weight'].value)"
+                }
+              }
+            }
+          }
+        ]
+      }
+    })
+  });
+
+    // must_not - 싫어요 많은 건 수 제외
+    keywords.map((data) => {
+      body.query.bool.must_not[0].nested.query.bool.should.push({
+        bool: {
+          must: [
+            {
+              match: {
+                "NEGATIVE_kwd.keyword": data
+              }
+            },
+            {
+              "range": {
+                "NEGATIVE_kwd.weight": {
+                  "gt": 5
+                }
+              }
+            }
+          ]
+        }
+      })
+    });
 
   // filter - use_yn
   filterConfig("keyword", params).map((data) => body.query.bool.filter.push(data))
