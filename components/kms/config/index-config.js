@@ -6,10 +6,10 @@ export const indexConfig = () => ({
         // 키워드 (0)
         "cntnt_keyword_k",
         // 제목 + 목차 (1:6)
-        "cntnt_title_ksk.kobrick",  "cntnt_title_ksk.standard",  "cntnt_title_ksk.keyword",
-        "item_nm_ksk.kobrick", "item_nm_ksk.standard", "item_nm_ksk.keyword",
+        "cntnt_title_ksk.kobrick^40",  "cntnt_title_ksk.standard^40",  "cntnt_title_ksk.keyword^40",
+        "item_nm_ksk.kobrick^10", "item_nm_ksk.standard", "item_nm_ksk.keyword",
         // 내용 (7:9)
-        "cntnt_text_ksk.kobrick", "cntnt_text_ksk.standard",  "cntnt_text_ksk.keyword",
+        "cntnt_text_ksk.kobrick^15", "cntnt_text_ksk.standard",  "cntnt_text_ksk.keyword",
         // 파일 (10:12)   
         "file.file_content_ksk.kobrick", "file.file_content_ksk.standard", "file.file_content_ksk.keyword"
       ],
