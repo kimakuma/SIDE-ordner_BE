@@ -22,6 +22,7 @@ export const indexConfig = () => ({
         "cntnt_good_i",
         "cntnt_keyword_k",
         "ctgr_nm_k",
+        "item_seq_k",
         "POSITIVE_kwd", 
         "NEGATIVE_kwd"
       ],
@@ -97,16 +98,17 @@ export const resultConfig = (label, data) => {
       : data._source.cntnt_text_ksk.slice(0, 150);
 
     return {
-      cntnt_no: data._source.cntnt_no_k,
-      cntnt_title: data._source.cntnt_title_ksk,
-      reg_dtm: data._source.reg_dt,
+      cntnt_no: data._source.cntnt_no_k ?? null,
+      cntnt_title: data._source.cntnt_title_ksk ?? null,
+      reg_dtm: data._source.reg_dt ?? null,
       item_ctt: typeof(item_ctt) != "string" ? item_ctt[0] : item_ctt,
-      dep_ctgr_cd: data._source.dep_ctgr_k,
-      org_cd: data._source.org_cd_k,
-      cntnt_count: data._source.cntnt_count_i,
-      cntnt_good: data._source.cntnt_good_i,
-      cntnt_srch_wd: data._source.cntnt_keyword_k,
-      ctgr_nm: data._source.ctgr_nm_k, 
+      dep_ctgr_cd: data._source.dep_ctgr_k ?? null,
+      org_cd: data._source.org_cd_k ?? null,
+      cntnt_count: data._source.cntnt_count_i ?? null,
+      cntnt_good: data._source.cntnt_good_i ?? null,
+      cntnt_srch_wd: data._source.cntnt_keyword_k ?? null,
+      ctgr_nm: data._source.ctgr_nm_k ?? null,
+      item_seq: data._source.item_seq_k ?? null
     }
   }
 }
