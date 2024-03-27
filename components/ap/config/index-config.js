@@ -1,6 +1,6 @@
 export const indexConfig = () => ({
   resultTA: {
-    index: "v1-stt_ta_data_test-002",
+    index: "stt_ta_data",
     field: {
       search: [],
       result: [
