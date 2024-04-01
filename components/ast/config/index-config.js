@@ -1,6 +1,6 @@
 export const indexConfig = () => ({
   keyword: {
-    index: "v1-kms_feedback-004",
+    index: "kms_feedback",
     field: {
       // 전체
       search: [
