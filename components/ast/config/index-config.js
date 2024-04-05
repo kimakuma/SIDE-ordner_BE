@@ -4,11 +4,11 @@ export const indexConfig = () => ({
     field: {
       // 전체
       search: [
-        "cntnt_title_ksk.kobrick^40",  "cntnt_title_ksk.standard^40",  "cntnt_title_ksk.keyword^40",        // 제목
-        "item_nm_ksk.kobrick^10", "item_nm_ksk.standard", "item_nm_ksk.keyword",                            // 목차
-        "cntnt_text_ksk.kobrick^15", "cntnt_text_ksk.standard",  "cntnt_text_ksk.keyword",                  // 내용
-        "file.file_content_ksk.kobrick", "file.file_content_ksk.standard", "file.file_content_ksk.keyword", // 파일
-        "cntnt_keyword_k",                                                                                  // 키워드
+        "cntnt_title_ksk.kobrick^70",     // 제목
+        "item_nm_ksk.kobrick^10",         // 목차
+        "cntnt_text_ksk.kobrick^50",      // 내용
+        "file.file_content_ksk.kobrick",  // 파일
+        "cntnt_keyword_k",                // 키워드
       ],
       highlight: ['cntnt_text_ksk'],
       result: [
@@ -67,8 +67,7 @@ export const indexConfig = () => ({
         pre_tags: "<em>",
         post_tags: "</em>",
         fields: {
-          "cntnt_text_ksk.kobrick": {},
-          "cntnt_text_ksk.standard": {},
+          "cntnt_text_ksk.kobrick": {}
         },
       },
       _source: [],
@@ -93,8 +92,7 @@ export const filterConfig = (label, params) => {
 export const resultConfig = (label, data) => {
   if (label == "keyword") {
     const item_ctt = data.highlight 
-      ? ( data.highlight["cntnt_text_ksk.kobrick"]
-      ??  data.highlight["cntnt_text_ksk.standard"] )
+      ? data.highlight["cntnt_text_ksk.kobrick"]
       : data._source.cntnt_text_ksk.slice(0, 150);
 
     return {

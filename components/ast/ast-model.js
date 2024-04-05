@@ -83,12 +83,22 @@ export async function keyword(params) {
   // filter - use_yn
   filterConfig("keyword", params).map((data) => body.query.bool.filter.push(data))
 
+  // sort
+  body.sort = [
+    {
+      _score: {
+        order: "desc"
+      }
+    }
+  ];
+
   logger.debug(`IF_TA_007_KMS 키워드검색 Params :: ${JSON.stringify(params)}`);
   logger.debug(`IF_TA_007_KMS 키워드검색 Query :: ${JSON.stringify(body)}`);
   
   const searchResult = await esSearch({
     index,
     body,
+    preference: "kahp",
   });
 
   return { searchResult }

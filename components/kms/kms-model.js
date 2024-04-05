@@ -16,10 +16,10 @@ export async function search(params) {
 
   const mappingFields = [];
   const mapping = {
-    0: [0, 13],
-    1: [1, 7],
-    2: [7, 10],
-    3: [10, 13]
+    0: [0, 5],
+    1: [1, 3],
+    2: [3],
+    3: [4]
   }
 
   params.srch_type.map((data) => {
@@ -64,6 +64,7 @@ export async function search(params) {
   const searchResult = await esSearch({
     index,
     body,
+    preference: "kahp",
   });
 
   return { searchResult }
