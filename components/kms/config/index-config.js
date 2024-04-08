@@ -1,6 +1,6 @@
 export const indexConfig = () => ({
   search: {
-    index: "kms_data",
+    index: "kms_feedback",
     field: {
       search: [
         // 키워드 (0)
