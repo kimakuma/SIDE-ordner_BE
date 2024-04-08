@@ -78,11 +78,20 @@ export const indexConfig = () => ({
 export const filterConfig = (label, params) => {
   const  filterQuery = [];
 
+  // USE_YN
   if (label === "keyword") {
-    // USE_YN
     filterQuery.push({
       term: {
         use_yn_k: "Y"
+      }
+    })
+  }
+
+  // 조직
+  if (params.bnch_cd) {
+    filterQuery.push({
+      term: {
+        org_cd_k: params.bnch_cd
       }
     })
   }
