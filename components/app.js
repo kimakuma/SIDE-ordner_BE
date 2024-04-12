@@ -33,8 +33,8 @@ app.use(
   }),
 );
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(swaggerDocument)));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(swaggerDocument)));
 app.use('/kms', kmsRouter);
 app.use('/ast', astRouter);
 app.use('/ap', apRouter);
