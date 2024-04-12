@@ -4,9 +4,9 @@ export const indexConfig = () => ({
     field: {
       // 전체
       search: [
-        "cntnt_title_ksk.kobrick^70",     // 제목
-        "item_nm_ksk.kobrick^10",         // 목차
-        "cntnt_text_ksk.kobrick^50",      // 내용
+        "cntnt_title_ksk.kobrick^10",     // 제목 ^70
+        "item_nm_ksk.kobrick^1.5",         // 목차 ^10
+        "cntnt_text_ksk.kobrick^4",      // 내용 ^50
         "file.file_content_ksk.kobrick",  // 파일
         "cntnt_keyword_k",                // 키워드
       ],

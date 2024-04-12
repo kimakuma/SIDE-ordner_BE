@@ -6,10 +6,10 @@ export const indexConfig = () => ({
         // 키워드 (0)
         "cntnt_keyword_k",
         // 제목 + 목차 (1:2)
-        "cntnt_title_ksk.kobrick^70",
-        "item_nm_ksk.kobrick^10",
+        "cntnt_title_ksk.kobrick^10",
+        "item_nm_ksk.kobrick^1.5",
         // 내용 (3)
-        "cntnt_text_ksk.kobrick^50",
+        "cntnt_text_ksk.kobrick^4",
         // 파일 (4)   
         "file.file_content_ksk.kobrick"
       ],

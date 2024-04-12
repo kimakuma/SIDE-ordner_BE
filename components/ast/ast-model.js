@@ -48,7 +48,7 @@ export async function keyword(params) {
             function_score: {
               script_score: {
                 script: {
-                  source: "Math.log(2 + doc['POSITIVE_kwd.weight'].value)"
+                  source: "Math.log(2 + doc['POSITIVE_kwd.weight'].value) * 5"
                 }
               }
             }
