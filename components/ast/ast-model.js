@@ -92,8 +92,8 @@ export async function keyword(params) {
     }
   ];
 
-  logger.debug(`IF_TA_007_KMS 키워드검색 Params :: ${JSON.stringify(params)}`);
-  logger.debug(`IF_TA_007_KMS 키워드검색 Query :: ${JSON.stringify(body)}`);
+  // logger.debug(`IF_TA_007_KMS 키워드검색 Params :: ${JSON.stringify(params)}`);
+  // logger.debug(`IF_TA_007_KMS 키워드검색 Query :: ${JSON.stringify(body)}`);
   
   const searchResult = await esSearch({
     index,

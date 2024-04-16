@@ -58,8 +58,8 @@ export async function search(params) {
   // sort
   body.sort = sortConfig("search", params.order_type)
 
-  logger.debug(`IF_TA_001_KMS 통합검색 Params :: ${JSON.stringify(params)}`);
-  logger.debug(`IF_TA_001_KMS 통합검색 Query :: ${JSON.stringify(body)}`);
+  // logger.debug(`IF_TA_001_KMS 통합검색 Params :: ${JSON.stringify(params)}`);
+  // logger.debug(`IF_TA_001_KMS 통합검색 Query :: ${JSON.stringify(body)}`);
   
   const searchResult = await esSearch({
     index,
@@ -94,8 +94,8 @@ export const autocomplete = async (params) => {
   // aggs - 중복 제거
   body.aggs = searchConfig.aggs;
 
-  logger.debug(`IF_TA_002_KMS 자동완성 Params :: ${JSON.stringify(params)}`);
-  logger.debug(`IF_TA_002_KMS 자동완성 Query :: ${JSON.stringify(body)}`);
+  // logger.debug(`IF_TA_002_KMS 자동완성 Params :: ${JSON.stringify(params)}`);
+  // logger.debug(`IF_TA_002_KMS 자동완성 Query :: ${JSON.stringify(body)}`);
 
   const searchResult = await esSearch({
     index,
