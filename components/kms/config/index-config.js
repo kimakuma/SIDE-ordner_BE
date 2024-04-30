@@ -53,60 +53,6 @@ export const indexConfig = () => ({
       _source: [],
     }
   },
-  autocomplate: {
-    index: "kms_auto",
-    field: {
-      // 첫 단어 일치
-      search_s: [
-        "search_wd_kskn.autocomplete", 
-        // "srch_wd.prefix^10"
-      ],
-      // 끝 단어 일치
-      search_e: [
-        "search_wd_kskn.autocomplete_reverse", 
-        // "srch_wd.autocomplete"
-      ],
-      // 중간 단어 일치
-      search_c: [
-        "search_wd_kskn.autocomplete_middle", 
-        // "srch_wd.autocomplete"
-      ],
-      // 단어 기반 일치
-      search_t: [
-        // "search_wd_kskn.keyword",
-        "search_wd_kskn.kobrick",
-        // "srch_wd.autocomplete"
-      ],
-      highlight: ["search_wd_kskn"],
-      result: [
-        "search_wd_kskn",
-      ],
-    },
-    body: {
-      size: 0,
-      query: {
-        bool: {
-          must: [],
-          filter: [],
-          should: [],
-          must_not: []
-        },
-      },
-      // highlight: {
-      //   pre_tags: "¶HS¶",
-      //   post_tags: "¶HE¶",
-      //   fields: {},
-      // },
-      _source: [],
-    },
-    aggs: {
-      aggs: {
-        terms: {
-          field: "search_wd_kskn.keyword"
-        }
-      }
-    }
-  },
 })
 
 export const filterConfig = (label, params) => {
@@ -163,26 +109,6 @@ export const filterConfig = (label, params) => {
     }
   }
 
-  // } else if (label === "autocomplete") {
-  //   // 도메인 번호 -> 형식 파라미터, 필터 조건 X
-  //   if (params.domain_no) { // 일단 1개 받아올 경우로 짬. 여러개 받는 경우 terms 사용
-  //     filterQuery.push({
-  //       term: {
-  //         reg_pgm_id_k: params.domain_no
-  //       }
-  //     })
-  //   }
-  // } else if (label === "keyword") {
-  //   // 지부 -> 형식 파라미터, 필터 조건 X
-  //   if (params.bnch_cd) { // 일단 1개 받아올 경우로 짬. 여러개 받는 경우 terms 사용
-  //     filterQuery.push({
-  //       term: {
-  //         reg_pgm_id_k: params.bnch_cd
-  //       }
-  //     })
-  //   }
-  // }
-
   return filterQuery;
 }
 
@@ -223,10 +149,6 @@ export const resultConfig = (label, data) => {
       cntnt_srch_wd: data._source.cntnt_keyword_k ?? null,
       ctgr_nm: data._source.ctgr_nm_k ?? null,
       item_seq: data._source.item_seq_k ?? null
-    }
-  } else if (label == "autocomplete") {
-    return {
-      keyword: data.key,
     }
   }
 }

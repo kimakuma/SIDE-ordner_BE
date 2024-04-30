@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { indexConfig, filterConfig, sortConfig } from "./config/index-config.js"
 import { Logger } from '../../lib/logger/logger.js';
 import { search as esSearch } from '../../lib/elasticsearch/client.js';
+import { indexConfig, filterConfig, sortConfig } from "./config/index-config.js"
 
 const logger = Logger(import.meta.url);
 
@@ -58,8 +57,8 @@ export async function search(params) {
   // sort
   body.sort = sortConfig("search", params.order_type)
 
-  // logger.debug(`IF_TA_001_KMS 통합검색 Params :: ${JSON.stringify(params)}`);
-  // logger.debug(`IF_TA_001_KMS 통합검색 Query :: ${JSON.stringify(body)}`);
+  logger.debug(`IF_TA_001_KMS 통합검색 Params :: ${JSON.stringify(params)}`);
+  logger.debug(`IF_TA_001_KMS 통합검색 Query :: ${JSON.stringify(body)}`);
   
   const searchResult = await esSearch({
     index,
@@ -68,39 +67,4 @@ export async function search(params) {
   });
 
   return { searchResult }
-}
-
-export const autocomplete = async (params) => {
-  const searchConfig = indexConfig()["autocomplate"];
-  const index = searchConfig.index;
-  const body = searchConfig.body;
-  
-  body.from = 0;
-  body.size = 0;
-  body._source = searchConfig.field.result;
-
-  // must - 검색어
-  body.query.bool.must.push({
-    multi_match: {
-      query: params.term,
-      fields: searchConfig.field[`search_${params.mode}`],
-      auto_generate_synonyms_phrase_query: "false",
-    }
-  })
-
-  // filter - 도메인 번호
-  filterConfig("autocomplete", params).map((data) => body.query.bool.filter.push(data))
-
-  // aggs - 중복 제거
-  body.aggs = searchConfig.aggs;
-
-  // logger.debug(`IF_TA_002_KMS 자동완성 Params :: ${JSON.stringify(params)}`);
-  // logger.debug(`IF_TA_002_KMS 자동완성 Query :: ${JSON.stringify(body)}`);
-
-  const searchResult = await esSearch({
-    index,
-    body
-  });
-
-  return { searchResult };
 }
