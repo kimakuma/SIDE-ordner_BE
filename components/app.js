@@ -2,19 +2,13 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import swaggerUi from 'swagger-ui-express';
 import morganMiddleware from '../lib/logger/morgan.js';
-import { promises as fs } from 'fs';
 import { Logger } from '../lib/logger/logger.js';
 import { errorHandler } from '../lib/middleware/error-handler.js';
 import { NotFoundError } from '../lib/errors/not-found-error.js';
 import { router as kmsRouter } from './kms/index.js';
-import { router as astRouter } from './ast/index.js';
-import { router as apRouter } from './ap/index.js';
-import { router as taRouter } from './ta/index.js';
 
 const logger = Logger(import.meta.url);
-const swaggerDocument = await fs.readFile('./swagger/swagger-output.json');
 
 export const app = express();
 
