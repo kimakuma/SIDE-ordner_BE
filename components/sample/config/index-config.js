@@ -130,25 +130,10 @@ export const sortConfig = (label, order_type) => {
 }
 
 export const resultConfig = (label, data) => {
-  if (label == "search") {
-    const item_ctt = data.highlight 
-      ? data.highlight["cntnt_text_ksk.kobrick"]
-      : data._source.cntnt_text_ksk.slice(0, 150);
-
+  if (label == "test") {
     return {
-      cntnt_no: data._source.cntnt_no_k ?? null,
-      cntnt_title: data._source.cntnt_title_ksk ?? null,
-      reg_dtm: data._source.reg_dt ? (data._source.reg_dt).replace(/(\-|\:| )/g, "") : null,
-      weight: data._source.weight_i ?? null,
-      item_nm: data._source.item_nm_ksk ?? null,
-      item_ctt: item_ctt ? typeof(item_ctt) != "string" ? item_ctt[0] : item_ctt : null,
-      dep_ctgr_cd: data._source.dep_ctgr_k ?? null,
-      org_cd: data._source.org_cd_k ?? null,
-      cntnt_count: data._source.cntnt_count_i ?? null,
-      cntnt_good: data._source.cntnt_good_i ?? null,
-      cntnt_srch_wd: data._source.cntnt_keyword_k ?? null,
-      ctgr_nm: data._source.ctgr_nm_k ?? null,
-      item_seq: data._source.item_seq_k ?? null
+      id: data.id ?? null,
+      pwd: data.pwd ?? null,
     }
   }
 }

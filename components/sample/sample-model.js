@@ -1,8 +1,16 @@
 import { Logger } from '../../lib/logger/logger.js';
+import { db } from '../../lib/mysql/connect.js'
 import { search as esSearch } from '../../lib/elasticsearch/client.js';
 import { indexConfig, filterConfig, sortConfig } from "./config/index-config.js"
 
 const logger = Logger(import.meta.url);
+
+export async function test(params) {
+  const query = "SELECT * FROM user";
+  const searchResult = await db.query(query);
+
+  return { searchResult };
+};
 
 export async function search(params) {
   const searchConfig = indexConfig()["search"];

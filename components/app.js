@@ -6,7 +6,7 @@ import morganMiddleware from '../lib/logger/morgan.js';
 import { Logger } from '../lib/logger/logger.js';
 import { errorHandler } from '../lib/middleware/error-handler.js';
 import { NotFoundError } from '../lib/errors/not-found-error.js';
-import { router as kmsRouter } from './kms/index.js';
+import { router as sampleRouter } from './sample/index.js';
 
 const logger = Logger(import.meta.url);
 
@@ -23,7 +23,7 @@ app.use(
   }),
 );
 
-app.use('/kms', kmsRouter);
+app.use('/sample', sampleRouter);
 
 app.use((req, res, next) => {
   next(new NotFoundError(`Cannot ${req.method} ${req.path}`));

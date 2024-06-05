@@ -1,6 +1,8 @@
 import * as yup from 'yup';
 
-export const search = {
+export const test = {};
+
+export const schemaSample = {
   body: yup.object({
     srch_type: yup.array().of(yup.string().trim().oneOf(["0", "1", "2", "3"])).default(["0"]),
     srch_wd: yup.array().required(),
@@ -14,13 +16,3 @@ export const search = {
     en_row: yup.number().integer().required().default(10),
   }),
 };
-
-export const autocomplete = {
-  body: yup.object({
-    target: yup.string().trim().oneOf(["complete"]).required().default("complete"),
-    term: yup.string().trim().required(),
-    domain_no: yup.string().trim().default("0"),
-    mode: yup.string().trim().oneOf(["s", "e", "c", "t"]).required().default("s"),
-    max_count: yup.number().integer().positive().default(5),
-  }),
-}

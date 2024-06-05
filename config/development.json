@@ -1,7 +1,7 @@
 {
   "app": {
     "host": "http://127.0.0.1",
-    "port": 17900,
+    "port": 18000,
     "https": {
       "key": "/path/to/key",
       "cert": "/path/to/crt"
@@ -24,7 +24,14 @@
   },
   "elasticsearch": {
     "nodes": [
-      "http://127.0.0.1:9200"
+      "http://100.200.100.152:17200"
     ]
+  },
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "password": "9909",
+    "database": "foodplace",
+    "port": 3600
   }
 }
