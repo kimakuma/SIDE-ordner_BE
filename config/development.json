@@ -28,10 +28,10 @@
     ]
   },
   "mysql": {
-    "host": "localhost",
-    "user": "root",
-    "password": "9909",
-    "database": "foodplace",
-    "port": 3600
+    "host": "3.34.95.168",
+    "user": "ordner",
+    "password": "ordner99!",
+    "database": "ordner",
+    "port": 9800
   }
 }
