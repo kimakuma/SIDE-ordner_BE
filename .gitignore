@@ -4,4 +4,5 @@ logs/
 test.js
 swagger/swagger-output.json
 config/production.json
+config/development.json
 components/app.js

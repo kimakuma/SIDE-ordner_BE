@@ -5,5 +5,5 @@ import * as userController from './user-controller.js';
 
 export const router = express.Router();
 
-// router.post('/signup', validate(schema.signup), userController.signup);
-router.post('/login', validate(schema.login), userController.login);
+router.post('/signUp', validate(schema.signUp), userController.signUp);
+router.post('/signIn', validate(schema.signIn), userController.signIn);

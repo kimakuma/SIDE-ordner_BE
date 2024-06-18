@@ -1,10 +1,16 @@
-import { db } from '../../lib/mysql/connect.js';
 import { asyncWrapper } from '../../lib/middleware/async-wrapper.js';
 import * as userService from './user-service.js';
 
-export const login = asyncWrapper(async (req, res) => {
+export const signUp = asyncWrapper(async (req, res) => {
   const params = req.validated.body;
-  const response = await userService.login(params);
+  const response = await userService.signUp(params);
 
-  res.send(response);	
+  res.send(response);
+});
+
+export const signIn = asyncWrapper(async (req, res) => {
+  const params = req.validated.body;
+  const response = await userService.signIn(params);
+
+  res.send(response);
 });
