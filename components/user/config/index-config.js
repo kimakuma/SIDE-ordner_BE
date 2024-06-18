@@ -56,7 +56,7 @@ export const indexConfig = () => ({
 })
 
 export const filterConfig = (label, params) => {
-  const  filterQuery = [];
+  const filterQuery = [];
 
   if (label === "search") {
     // USE_YN
@@ -86,7 +86,7 @@ export const filterConfig = (label, params) => {
         }
       })
     }
-    
+
     // 등록일 범위 (종료)
     if (params.end_dt) { // YYYYMMDDhhmmss 형식
       filterQuery.push({
@@ -113,7 +113,7 @@ export const filterConfig = (label, params) => {
 }
 
 export const sortConfig = (label, order_type) => {
-  const  sortQuery = [];
+  const sortQuery = [];
   const mappingFields = {
     search: ["_score", "reg_dt", "cntnt_count_i", "cntnt_good_i", "weight_i"]
   }
@@ -124,13 +124,13 @@ export const sortConfig = (label, order_type) => {
         order: "desc"
       }
     })
-  } 
+  }
 
   return sortQuery;
 }
 
 export const resultConfig = (label, data) => {
-  if (label == "login") {
+  if (label == "signIn") {
     return {
       name: data.name ?? null,
       phone: data.phone ?? null,

@@ -1,6 +1,15 @@
 import * as yup from 'yup';
 
-export const login = {
+export const signUp = {
+  body: yup.object({
+    name: yup.string().trim().required(),
+    phone: yup.string().trim().required(),
+    email: yup.string().trim().required(),
+    pwd: yup.string().trim().required(),
+  })
+};
+
+export const signIn = {
   body: yup.object({
     email: yup.string().trim().required(),
     pwd: yup.string().trim().required(),
