@@ -8,6 +8,7 @@ import { errorHandler } from '../lib/middleware/error-handler.js';
 import { NotFoundError } from '../lib/errors/not-found-error.js';
 import { router as sampleRouter } from './sample/index.js';
 import { router as userRouter } from './user/index.js';
+import { router as reserveRouter } from './reserve/index.js';
 
 const logger = Logger(import.meta.url);
 
@@ -26,6 +27,7 @@ app.use(
 
 app.use('/sample', sampleRouter);
 app.use('/user', userRouter);
+app.use('/reserve', reserveRouter);
 
 app.use((req, res, next) => {
   next(new NotFoundError(`Cannot ${req.method} ${req.path}`));
