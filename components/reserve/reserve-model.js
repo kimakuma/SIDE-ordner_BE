@@ -5,6 +5,18 @@ import { indexConfig, filterConfig, sortConfig } from "./config/index-config.js"
 
 const logger = Logger(import.meta.url);
 
+export async function truckList(params) {
+  const query = `
+    SELECT *
+    FROM truck
+    LIMIT 10
+  `;
+
+  const [rows] = await db.query(query);
+
+  return rows;
+};
+
 export async function list(params) {
   const query = `
     SELECT *
