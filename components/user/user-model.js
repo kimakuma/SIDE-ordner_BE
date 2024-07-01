@@ -40,8 +40,9 @@ export async function signUp(params) {
 
 export async function signIn(params) {
   const query = `
-    SELECT 
-      name
+    SELECT
+      id
+      , name
       , phone
       , email
     FROM user 

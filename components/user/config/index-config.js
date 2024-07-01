@@ -132,6 +132,7 @@ export const sortConfig = (label, order_type) => {
 export const resultConfig = (label, data) => {
   if (label == "signIn") {
     return {
+      id: data.id ?? null,
       name: data.name ?? null,
       phone: data.phone ?? null,
       email: data.email ?? null,

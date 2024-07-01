@@ -130,9 +130,15 @@ export const sortConfig = (label, order_type) => {
 }
 
 export const resultConfig = (label, data) => {
-  if (label == "list") {
+  if (label == "truckList") {
     return {
-      reserved: data.reserved ?? null,
+      name: data.name ?? null,
+      img: data.img ?? null,
+    }
+  } else if (label == "list") {
+    return {
+      truckId: data.truckId ?? null,
+      truckName: data.truckName ?? null,
       startDate: data.startDate ?? null,
       endDate: data.endDate ?? null,
     }
