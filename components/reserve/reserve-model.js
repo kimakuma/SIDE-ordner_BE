@@ -17,6 +17,30 @@ export async function truckList(params) {
   return rows;
 };
 
+export async function truckInfo(params) {
+  const query = `
+    SELECT *
+    FROM truck
+    WHERE truckId = ${params.truckId}
+  `;
+
+  const [rows] = await db.query(query);
+
+  return rows;
+};
+
+export async function truckMenuList(params) {
+  const query = `
+    SELECT *
+    FROM truck_menu
+    WHERE truckId = ${params.truckId}
+  `;
+
+  const [rows] = await db.query(query);
+
+  return rows;
+};
+
 export async function list(params) {
   const query = `
     SELECT *

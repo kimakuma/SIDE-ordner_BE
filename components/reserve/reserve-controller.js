@@ -8,6 +8,13 @@ export const truckList = asyncWrapper(async (req, res) => {
   res.send(response);
 });
 
+export const truckDetail = asyncWrapper(async (req, res) => {
+  const params = req.validated.query;
+  const response = await reserveService.truckDetail(params);
+
+  res.send(response);
+});
+
 export const list = asyncWrapper(async (req, res) => {
   const params = req.validated.query;
   const response = await reserveService.list(params);

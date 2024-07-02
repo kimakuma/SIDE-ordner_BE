@@ -1,8 +1,12 @@
 import * as yup from 'yup';
 
 export const truckList = {
-  query: yup.object({
+  query: yup.object({})
+};
 
+export const truckDetail = {
+  query: yup.object({
+    truckId: yup.string().trim().required(),
   })
 };
 
