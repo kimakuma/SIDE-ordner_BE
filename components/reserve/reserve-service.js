@@ -10,12 +10,41 @@ export async function truckList(params) {
 
   const result = await reserveModel.truckList(params);
 
-  console.log(result)
-
   if (result.length > 0) {
     result.map((data) => {
       response.results.push(resultConfig("truckList", data));
     });
+  } else {
+    response.status = 400;
+    response.message = "None Data"
+  }
+
+  return response
+};
+
+export async function truckDetail(params) {
+  const response = {
+    status: 200,
+    message: "Success",
+    results: {
+      truckInfo: {},
+      truckMenuList: [],
+    }
+  };
+
+  const result_truckInfo = await reserveModel.truckInfo(params);
+  const result_truckMenuList = await reserveModel.truckMenuList(params);
+
+  if (result_truckInfo.length > 0) {
+    result_truckInfo.map((data) => {
+      response.results.truckInfo = resultConfig("truckInfo", data);
+    });
+
+    if (result_truckMenuList.length > 0) {
+      result_truckMenuList.map((data) => {
+        response.results.truckMenuList.push(resultConfig("truckMenuList", data));
+      });
+    }
   } else {
     response.status = 400;
     response.message = "None Data"

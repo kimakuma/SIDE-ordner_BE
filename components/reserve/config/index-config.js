@@ -135,6 +135,16 @@ export const resultConfig = (label, data) => {
       name: data.name ?? null,
       img: data.img ?? null,
     }
+  } else if (label == "truckInfo") {
+    return {
+      name: data.name ?? null,
+      img: data.img ?? null,
+    }
+  } else if (label == "truckMenuList") {
+    return {
+      name: data.name ?? null,
+      img: data.img ?? null,
+    }
   } else if (label == "list") {
     return {
       truckId: data.truckId ?? null,

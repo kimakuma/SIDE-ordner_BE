@@ -6,4 +6,5 @@ import * as reserveController from './reserve-controller.js';
 export const router = express.Router();
 
 router.get('/truckList', validate(schema.truckList), reserveController.truckList);
+router.get('/truckDetail', validate(schema.truckDetail), reserveController.truckDetail);
 router.get('/list', validate(schema.list), reserveController.list);
