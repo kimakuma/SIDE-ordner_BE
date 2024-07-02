@@ -132,6 +132,7 @@ export const sortConfig = (label, order_type) => {
 export const resultConfig = (label, data) => {
   if (label == "truckList") {
     return {
+      truckId: data.truckId ?? null,
       name: data.name ?? null,
       img: data.img ?? null,
     }
