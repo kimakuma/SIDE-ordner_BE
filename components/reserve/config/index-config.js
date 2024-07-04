@@ -144,6 +144,7 @@ export const resultConfig = (label, data) => {
   } else if (label == "truckMenuList") {
     return {
       name: data.name ?? null,
+      price: data.price ?? null,
       img: data.img ?? null,
     }
   } else if (label == "list") {
