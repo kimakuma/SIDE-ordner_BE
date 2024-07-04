@@ -145,6 +145,7 @@ export const resultConfig = (label, data) => {
     return {
       name: data.name ?? null,
       price: data.price ?? null,
+      desc: data.desc ?? null,
       img: data.img ?? null,
     }
   } else if (label == "list") {
