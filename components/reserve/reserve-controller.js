@@ -21,3 +21,10 @@ export const list = asyncWrapper(async (req, res) => {
 
   res.send(response);
 });
+
+export const reserve = asyncWrapper(async (req, res) => {
+  const params = req.validated.body;
+  const response = await reserveService.reserve(params);
+
+  res.send(response);
+});
