@@ -95,14 +95,18 @@ export async function reserve(params) {
     message: "Success",
   };
 
-  const result = await reserveModel.reserve(params);
-
-  if (result > 0) {
-    response.message = "예약이 완료되었습니다";
-  } else {
+  const reserveCheck = await reserveModel.reserveCheck(params);
+  if (reserveCheck.length > 0) {
     response.status = 400;
     response.message = "이미 예약된 날짜입니다";
+  } else {
+    const result = await reserveModel.reserve(params);
+    if (result > 0) {
+      response.message = "예약이 완료되었습니다";
+    } else {
+      response.status = 500;
+      response.message = "DB QUERY ERROR";
+    }
   }
-
   return response;
 }
