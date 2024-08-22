@@ -56,11 +56,16 @@ export async function list(params) {
 
 export async function reserve(params) {
   const query = `
-    INSERT
-    INTO reserveList
-    (userID, truckId, truckName, startDate, endDate)
-    VALUES
-    ('${params.userId}', '${params.truckId}', '${params.truckName}', '${params.startDate}', '${params.endDate}')
+  INSERT INTO reserveList (userID, truckId, truckName, startDate, endDate)
+  SELECT '${params.userId}', ${params.truckId}, '${params.truckName}', '${params.startDate}', '${params.endDate}'
+  WHERE NOT EXISTS (
+   SELECT 1
+   FROM (SELECT * FROM reserveList) AS temp 
+   WHERE temp.truckId = ${params.truckId} AND 
+  (
+   (startDate <= '${params.startDate}' AND '${params.startDate}' <= endDate) 
+   OR (startDate <= '${params.endDate}' AND '${params.endDate}' <= endDate))
+  )
   `;
 
   const [ResultSetHeader] = await db.query(query);

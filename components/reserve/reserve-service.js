@@ -93,15 +93,15 @@ export async function reserve(params) {
   const response = {
     status: 200,
     message: "Success",
-    results: {},
   };
 
   const result = await reserveModel.reserve(params);
 
-  if (result.length > 0) {
+  if (result > 0) {
+    response.message = "예약이 완료되었습니다";
   } else {
     response.status = 400;
-    response.message = "Error";
+    response.message = "이미 예약된 날짜입니다";
   }
 
   return response;
