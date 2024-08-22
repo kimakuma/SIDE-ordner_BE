@@ -53,3 +53,17 @@ export async function list(params) {
 
   return rows;
 };
+
+export async function reserve(params) {
+  const query = `
+    INSERT
+    INTO reserveList
+    (userID, truckId, truckName, startDate, endDate)
+    VALUES
+    ('${params.userId}', '${params.truckId}', '${params.truckName}', '${params.startDate}', '${params.endDate}')
+  `;
+
+  const [ResultSetHeader] = await db.query(query);
+
+  return ResultSetHeader.affectedRows;
+}

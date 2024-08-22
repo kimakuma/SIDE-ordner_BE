@@ -30,3 +30,13 @@ export const schemaSample = {
     en_row: yup.number().integer().required().default(10),
   }),
 };
+
+export const reserve = {
+  body: yup.object({
+    userId: yup.string().trim().required(),
+    truckId: yup.number().integer().required(),
+    truckName: yup.string().trim().required(),
+    startDate: yup.string().trim().required(),
+    endDate: yup.string().trim().required(),
+  }),
+};

@@ -87,3 +87,22 @@ export async function list(params) {
 
   return response
 };
+
+export async function reserve(params) {
+  const now = new Date();
+  const response = {
+    status: 200,
+    message: "Success",
+    results: {},
+  };
+
+  const result = await reserveModel.reserve(params);
+
+  if (result.length > 0) {
+  } else {
+    response.status = 400;
+    response.message = "Error";
+  }
+
+  return response;
+}
