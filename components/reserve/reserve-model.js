@@ -5,11 +5,13 @@ import { indexConfig, filterConfig, sortConfig } from "./config/index-config.js"
 
 const logger = Logger(import.meta.url);
 
-export async function truckList(params) {
+export async function reserveList(params) {
   const query = `
     SELECT *
-    FROM truck
-    LIMIT 10
+    FROM reserveList
+    WHERE
+      userId = ${params.userId}
+    ORDER BY startDate
   `;
 
   const [rows] = await db.query(query);
@@ -41,32 +43,19 @@ export async function truckMenuList(params) {
   return rows;
 };
 
-export async function list(params) {
+export async function truckSchedule(params) {
   const query = `
-    SELECT *
+    SELECT 
+      startDate, endDate
     FROM reserveList
     WHERE
-      userId = ${params.userId}
+      truckId = ${params.truckId}
   `;
 
   const [rows] = await db.query(query);
 
   return rows;
 };
-
-export async function reserve(params) {
-  const query = `
-    INSERT
-    INTO reserveList
-    (userID, truckId, truckName, startDate, endDate)
-    VALUES
-    ('${params.userId}', '${params.truckId}', '${params.truckName}', '${params.startDate}', '${params.endDate}')
-  `;
-
-  const [ResultSetHeader] = await db.query(query);
-
-  return ResultSetHeader.affectedRows;
-}
 
 export async function reserveCheck(params) {
   const query = `
@@ -82,4 +71,30 @@ export async function reserveCheck(params) {
   const [rows] = await db.query(query);
 
   return rows;
-}
+};
+
+export async function reserve(params) {
+  const query = `
+    INSERT
+    INTO reserveList
+    (userID, truckId, truckName, startDate, endDate, people, msg)
+    VALUES
+    ('${params.userId}', '${params.truckId}', '${params.truckName}', '${params.startDate}', '${params.endDate}', '${params.people}', '${params.msg}')
+  `;
+
+  const [ResultSetHeader] = await db.query(query);
+
+  return ResultSetHeader.affectedRows;
+};
+
+export async function truckList(params) {
+  const query = `
+    SELECT *
+    FROM truck
+    LIMIT 10
+  `;
+
+  const [rows] = await db.query(query);
+
+  return rows;
+};

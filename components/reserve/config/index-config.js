@@ -130,11 +130,12 @@ export const sortConfig = (label, order_type) => {
 }
 
 export const resultConfig = (label, data) => {
-  if (label == "truckList") {
+  if (label == "reserveList") {
     return {
       truckId: data.truckId ?? null,
-      name: data.name ?? null,
-      img: data.img ?? null,
+      truckName: data.truckName ?? null,
+      startDate: data.startDate ?? null,
+      endDate: data.endDate ?? null,
     }
   } else if (label == "truckInfo") {
     return {
@@ -148,12 +149,35 @@ export const resultConfig = (label, data) => {
       desc: data.desc ?? null,
       img: data.img ?? null,
     }
-  } else if (label == "list") {
+  } else if (label == "truckSchedule") {
+    const startDate = new Date(data.startDate);
+    const endDate = new Date(data.endDate);
+    const result = [];
+
+    let currentDate = new Date(startDate);
+
+    while (currentDate <= endDate) {
+      if (currentDate >= new Date()) {
+        result.push(new Date(currentDate));
+      }
+
+      currentDate.setUTCDate(currentDate.getUTCDate() + 1);
+    }
+
+    const formattedResult = result.map(date => {
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(date.getUTCDate()).padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
+    });
+
+    return formattedResult;
+  } else if (label == "truckList") {
     return {
       truckId: data.truckId ?? null,
-      truckName: data.truckName ?? null,
-      startDate: data.startDate ?? null,
-      endDate: data.endDate ?? null,
+      name: data.name ?? null,
+      img: data.img ?? null,
     }
   }
 }

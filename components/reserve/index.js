@@ -6,9 +6,15 @@ import * as reserveController from './reserve-controller.js';
 export const router = express.Router();
 
 /* GET */
-router.get('/truckList', validate(schema.truckList), reserveController.truckList);
-router.get('/truckDetail', validate(schema.truckDetail), reserveController.truckDetail);
-router.get('/list', validate(schema.list), reserveController.list);
+// 예약 내역 리스트
+router.get('/reserveList', validate(schema.reserveList), reserveController.reserveList);
+// 트럭 정보 (트럭 정보, 메뉴, 예약 일자)
+router.get('/truckInfo', validate(schema.truckInfo), reserveController.truckInfo);
 
 /* POST */
-router.post('/', validate(schema.reserve), reserveController.reserve);
+// 트럭 예약
+router.post('/reserve', validate(schema.reserve), reserveController.reserve);
+
+// TODO]
+// 트럭 리스트 -> route 변경
+router.get('/truckList', validate(schema.truckList), reserveController.truckList);
