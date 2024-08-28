@@ -136,6 +136,7 @@ export const resultConfig = (label, data) => {
       truckName: data.truckName ?? null,
       startDate: data.startDate ?? null,
       endDate: data.endDate ?? null,
+      process: data.process ?? null,
     }
   } else if (label == "truckInfo") {
     return {
