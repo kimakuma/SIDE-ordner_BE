@@ -68,7 +68,7 @@ export async function truckInfo(params) {
         tempResult.push(resultConfig("truckSchedule", data));
       });
 
-      response.results.truckSchedule.push(tempResult.flat());
+      response.results.truckSchedule = tempResult.flat();
     }
   } else {
     response.status = 400;
