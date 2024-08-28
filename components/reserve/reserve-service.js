@@ -20,7 +20,7 @@ export async function reserveList(params) {
       const start = data.startDate;
       const end = data.endDate;
 
-      if (now < start && now < end) {
+      if ((now < start && now < end) || data.process === 'N') {
         response.results.before.push(resultConfig("reserveList", data));
       } else if (start <= now && now <= end) {
         response.results.ing.push(resultConfig("reserveList", data));
