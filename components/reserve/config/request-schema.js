@@ -20,7 +20,7 @@ export const reserve = {
     startDate: yup.string().trim().required(),
     endDate: yup.string().trim().required(),
     people: yup.string().trim().required(),
-    msg: yup.string().trim().required(),
+    msg: yup.string().trim(),
   }),
 };
 
